@@ -31,17 +31,16 @@ function draw() {
       fill(130, 130, 255);
       text("Wall is not effective", 700, 150);
       text("Damage Done : "+Math.round(damage), 700, 200)
-    }else{
+    }if(damage < 10){
       wall.shapeColor = color(0, 255, 0);
       textStyle("bold");
       textSize(30);
       fill(130, 130, 255);
       text("Wall is effective", 700, 150);
       text("Damage Done : "+Math.round(damage), 700, 200)
-    }
   }
   drawSprites();
-  
+  }
 }
 function collide(o1, o2){
   if(o1.x - o2.x < (o1.width+o2.width)/ 2){
