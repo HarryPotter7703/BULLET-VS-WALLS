@@ -1,4 +1,4 @@
-var thickness, speed, weight, bullet, wall
+var thickness, speed, weight, bullet, wall, damage;
 
 function setup() {
   createCanvas(1600, 400);
@@ -19,7 +19,7 @@ function setup() {
 function draw() {
 
   background(0);
-  if(wall.x - bullet.x < (wall.width+bullet.width) / 2){
+  if(collide(wall, bullet)){
     bullet.velocityX = 0;
 
     damage = (0.5 * weight * speed * speed) / (thickness**3);
@@ -32,13 +32,21 @@ function draw() {
       text("Wall is not effective", 700, 150);
       text("Damage Done : "+Math.round(damage), 700, 200)
     }else{
-      wall.shapeColor = color(0, 255, 0);
+      walls.shapeColor = color(0, 255, 0);
       textStyle("bold");
       textSize(30);
       fill(130, 130, 255);
       text("Wall is effective", 700, 150);
       text("Damage Done : "+Math.round(damage), 700, 200)
-    }
   }
   drawSprites();
+  }
+}
+function collide(o1, o2){
+  if(o1.x - o2.x < (o1.width+o2.width)/ 2){
+    return true;
+  }
+  return false;
+  
+  
 }
